@@ -1,14 +1,15 @@
 angular.module('startMean', ['ngRoute', 'nerd']).config(function($routeProvider) {
-  // route for the home page
-  $routeProvider.when('/geek', {
-      templateUrl: '/views/index.html'
-        // controller: 'mainCtrl'
-    })
-    // route for the about page
-    .when('/nerd', {
-      templateUrl: 'views/nerdDash/nerd.html',
-      controller: 'nerdCtrl'
-    }).otherwise({
-      redirectTo: '/'
-    });
+    // route for the home page
+    $routeProvider
+        .when('/', {
+            templateUrl: '/views/login.html'
+                // controller: 'mainCtrl'
+        })
+        .when('/view', {
+            templateUrl: '/views/filter.html'
+                // controller: 'mainCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 });

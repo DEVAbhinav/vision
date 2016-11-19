@@ -1,40 +1,251 @@
-<!-- public/views/index.html -->
 <!doctype html>
 <html lang="en" ng-app="startMean">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Starter MEAN Single Page Application</title>
-  <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/vendor/simplemde/dist/simplemde.min.css">
+    <meta charset="UTF-8">
+    <title>Starter MEAN Single Page Application</title>
+    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+    <!-- styles -->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet">
+    <link href="/assets/css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/owl.carousel.css" rel="stylesheet">
+    <link href="/assets/css/owl.theme.css" rel="stylesheet">
+    <!-- theme stylesheet -->
+    <link href="/assets/css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <!-- your stylesheet with modifications -->
+    <link href="/assets/css/custom.css" rel="stylesheet">
+    <script src="/assets/js/respond.min.js"></script>
 </head>
-<body>
-  <div class="container">
-    <div class="jumbotron">
-      <h2 class="pageheader">Hello MEAN</h2>
-  <textarea class="editor"></textarea>
-    </div>
-    <a href="/#/nerd" class="btn btn-warning">Load Nerd</a>
-    <div ng-view></div>
-  </div>
-  <!-- Vendor -->
-  <script src="/vendor/jquery/dist/jquery.min.js "></script>
-  <script src="/vendor/bootstrap/dist/js/bootstrap.min.js "></script>
-  <script src="/vendor/angular/angular.min.js "></script>
-  <script src="/vendor/angular-route/angular-route.min.js "></script>
-  <script src="/vendor/simplemde/dist/simplemde.min.js "></script>
 
-  <!-- Custom -->
-  <script src="/views/module.js "></script>
-  <script src="/views/nerdDash/module.js "></script>
-  <script src="/views/nerdDash/nerdCtrl.js "></script>
-  <script src="/views/nerdDash/nerdService.js "></script>
-  <script src="/views/nerdDash/viewNerd/viewNerdCtrl.js "></script>
-  <script>
-  var simplemde = new SimpleMDE({
-   element: document.querySelector(".editor") ,
-   showIcons: ["code"]
- });
-  </script>
+<body>
+    <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <!-- <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a> -->
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    </li>
+                    <li><a href="register.html">Register</a>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                    <li><a href="#">Recently viewed</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- *** TOP BAR END *** -->
+    <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="#" data-animate-hover="bounce">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Green_Vision_Media_logo.png" style="width: 65px;height: 45px;" alt="Obaju logo"><span class="sr-only">Obaju - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!--/.navbar-header -->
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="/#">Home</a>
+                    </li>
+                    <li class="dropdown yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Services <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>Clothing</h5>
+                                            <ul>
+                                                <li><a href="category.html">T-shirts</a>
+                                                </li>
+                                                <li><a href="category.html">Shirts</a>
+                                                </li>
+                                                <li><a href="category.html">Pants</a>
+                                                </li>
+                                                <li><a href="category.html">Accessories</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+            <div class="navbar-buttons">
+                <!--/.nav-collapse -->
+                <div class="navbar-collapse collapse right" id="search-not-mobile">
+                    <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span>
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse clearfix" id="search">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+
+      <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+        </span>
+                    </div>
+                </form>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
+    <!-- *** NAVBAR END *** -->
+    <div id="all">
+        <div ng-view></div>
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+        <div id="footer" data-animate="fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Pages</h4>
+                        <ul>
+                            <li><a href="text.html">About us</a>
+                            </li>
+                            <li><a href="text.html">Terms and conditions</a>
+                            </li>
+                            <li><a href="faq.html">FAQ</a>
+                            </li>
+                            <li><a href="contact.html">Contact us</a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <h4>User section</h4>
+                        <ul>
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            </li>
+                            <li><a href="register.html">Regiter</a>
+                            </li>
+                        </ul>
+                        <hr class="hidden-md hidden-lg hidden-sm">
+                    </div>
+                    <!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Top categories</h4>
+                        <h5>Men</h5>
+                        <ul>
+                            <li><a href="category.html">T-shirts</a>
+                            </li>
+                            <li><a href="category.html">Shirts</a>
+                            </li>
+                            <li><a href="category.html">Accessories</a>
+                            </li>
+                        </ul>
+                        <h5>Ladies</h5>
+                        <ul>
+                            <li><a href="category.html">T-shirts</a>
+                            </li>
+                            <li><a href="category.html">Skirts</a>
+                            </li>
+                            <li><a href="category.html">Pants</a>
+                            </li>
+                            <li><a href="category.html">Accessories</a>
+                            </li>
+                        </ul>
+                        <hr class="hidden-md hidden-lg">
+                    </div>
+                    <!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Where to find us</h4>
+                        <p><strong>Obaju Ltd.</strong>
+                            <br>13/25 New Avenue
+                            <br>New Heaven
+                            <br>45Y 73J
+                            <br>England
+                            <br>
+                            <strong>Great Britain</strong>
+                        </p>
+                        <a href="contact.html">Go to contact page</a>
+                        <hr class="hidden-md hidden-lg">
+                    </div>
+                    <!-- /.col-md-3 -->
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Get the news</h4>
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <span class="input-group-btn">
+
+          <button class="btn btn-default" type="button">Subscribe!</button>
+
+      </span>
+                            </div>
+                            <!-- /input-group -->
+                        </form>
+                        <hr>
+                        <h4>Stay in touch</h4>
+                        <p class="social">
+                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                        </p>
+                    </div>
+                    <!-- /.col-md-3 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+        <!-- *** FOOTER END *** -->
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left"><strong> © Vision Corp.</strong></p>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+    </div>
+    <!-- /#all -->
+    <!-- Vendor -->
+    <script src="/bower_components/jquery/dist/jquery.min.js "></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js "></script>
+    <script src="/bower_components/angular/angular.min.js "></script>
+    <script src="/bower_components/angular-route/angular-route.min.js "></script>
+    <!-- Custom -->
+    <script src="/views/module.js "></script>
+    <script src="/views/nerdDash/module.js "></script>
+    <script src="/views/nerdDash/nerdCtrl.js "></script>
+    <script src="/views/nerdDash/nerdService.js "></script>
+    <script src="/views/nerdDash/viewNerd/viewNerdCtrl.js "></script>
 </body>
+
 </html>
