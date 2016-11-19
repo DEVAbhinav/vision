@@ -18,4 +18,4 @@ module.exports = mongoose.model('Nerd', {
     default: '5'
   }
 });
-mongoose.connect('mongodb://itaditya:itaditya@ds053166.mlab.com:53166/dbaditya');
+//mongoose.connect('mongodb://nibble:ncs@ds159237.mlab.com:59237/vision');
