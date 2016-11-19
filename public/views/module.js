@@ -9,6 +9,10 @@ angular.module('startMean', ['ngRoute', 'nerd']).config(function($routeProvider)
             templateUrl: '/views/filter.html'
                 // controller: 'mainCtrl'
         })
+        .when('/profile', {
+            templateUrl: '/views/details.html'
+                // controller: 'mainCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
