@@ -42,6 +42,7 @@
         
         "name" : name,
         "aadhar" : 1000000000+Math.floor(Math.random()*150),
+      
         "address" : [
                 {
                         "pincode" : 201301+Math.floor(Math.random()*40),
@@ -55,48 +56,43 @@
                         "city" : "Noida"
                 }
         ],
-        "phno" : 8889558665+Math.floor(Math.random()*150),
-        "medicalinformation" : [{
-                "type" : disease[ran].name,
-                "test" : [
+        "phno" : 8889558665+Math.floor(Math.random()*150)        
+      });
+    newRecord.medicalinformation.push({
+                type : disease[ran].name,
+                test : [
                         {
-                                "type" :  disease[ran].name +" Test",
-                                "pharmacy" : "P Goyal",
-                                "status" : status[report>disease[ran].base],
-                                "date" : Date.now(),
-                                "report" : report
+                                type :  disease[ran].name +" Test",
+                                pharmacy : "P Goyal",
+                                status : status[report>disease[ran].base],
+                                date : Date.now(),
+                                report : report
                         },
                         {
-                                "type" : disease[Math.floor(Math.random()*3)].name+" Test",
-                                "pharmacy" : "P Goyal",
-                                "status" : status[(Math.random()*300)>150],
-                                "date" : "4/11/16",
-                                "report" :  200
+                                type : disease[Math.floor(Math.random()*3)].name+" Test",
+                                pharmacy : "P Goyal",
+                                status : status[(Math.random()*300)>150],
+                                date : "4/11/16",
+                                report  :  200
                         }
                 ],
-                "date" : Date.now(),
-                "medicine" : [
+                date : Date.now(),
+                medicine : [
                         medicine[Math.floor(Math.random()*4)],
                        medicine[Math.floor(Math.random()*4)],
                         medicine[Math.floor(Math.random()*4)],
                        medicine[Math.floor(Math.random()*4)]
                 ],
-                "symptoms" : [
+                symptoms : [
                         "Blurred Vision",
                         "Weight loss",
                         "Vomiting",
                         "Feeling more tired"
                 ],
-                "organ" : organ[Math.floor(Math.random()*4)],
-                "doctor" : "P.K Yadav"
-        }]
-        
-    
-
-
-
-      });
-
+                organ : organ[Math.floor(Math.random()*4)],
+                doctor : "P.K Yadav"
+        });
+      console.log(newRecord);
       newRecord.save(function(err,result) {
         if(err)
             console.log(err);
@@ -106,9 +102,22 @@
 
 
     }
+    res.send("Success!");
 
 
 })
+   .get('/find',function(req,res)  {
+    fortis.find(function(err,result) {
+        if (err)
+            console.log(err);
+        else
+            console.log(result.medicalinformation);
+            res.json(result);
+    })
+   })
+
+
+
      .post('/api/nerds', function(req, res) {
        var fortis = new fortis(); // create a new instance of the fortis model
        fortis.name = req.body.name; // set the nerds name (comes from the request)

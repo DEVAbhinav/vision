@@ -8,27 +8,27 @@ module.exports = mongoose.model('fortis',
   {
     
     medicalinformation: [
-        {
-            test: [
-                {
-                    date: Date,
-                    status: String,
-                    pharmacy: String,
-                    type: String,
-                    report: String
-                }
-            ],
-            type: String,
-            medicine: [
-                String
-            ],
-            date: String,
-            symptoms: [
-                String
-            ],
-            organ: String,
-            doctor: String
-        }
+        // {
+        //     test: [
+        //         {
+        //             date: Date,
+        //             status: String,
+        //             pharmacy: String,
+        //             type: String,
+        //             report: String
+        //         }
+        //     ],
+        //     type: String,
+        //     medicine: [
+        //         String
+        //     ],
+        //     date: String,
+        //     symptoms: [
+        //         String
+        //     ],
+        //     organ: String,
+        //     doctor: String
+        // }
     ],
     name: String,
     address: [
@@ -37,10 +37,10 @@ module.exports = mongoose.model('fortis',
             city: String,
             pincode: Number,
             locality: [
-                {
-                    latitude: Number,
-                    longitude: Number
-                }
+                // {
+                //     latitude: Number,
+                //     longitude: Number
+                // }
             ]
         }
     ],
