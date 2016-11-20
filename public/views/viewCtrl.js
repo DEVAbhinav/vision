@@ -1,17 +1,17 @@
-angular.module('startMean').controller('viewCtrl', function($scope, userFactory) {
+angular.module('startMean').controller('viewCtrl', function($scope, userFactory, donorFactory) {
     $scope.params = {
         location: {
             lat: 0,
             long: 0
         }
     };
-    $scope.setNerd = function() {
-        userFactory.create($scope.nerd).success(function(data) {
-            getUsers();
-        });
-    }
+    $scope.donors = [];
     $scope.filterDonor = function() {
-        console.log($scope.params);
+        $scope.donors = [];
+        donorFactory.getList($scope.params).success(function(donors) {
+            console.log(donors);
+            $scope.donors = donors;
+        });
     }
     $(document).ready(function() {
         $scope.params.aadharId = localStorage.getItem("aadharId");

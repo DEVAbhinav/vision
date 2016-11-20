@@ -111,7 +111,8 @@
 
 
 })
-   .get('/find',function(req,res)  {
+   .post('/find',function(req,res)  {
+    console.log("adi",req.body);
     
     var aadhar =  req.body.aadhar||0;
     var bloodgroup = req.body.bloodgroup||'a';

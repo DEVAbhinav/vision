@@ -48,7 +48,17 @@
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input ng-model="params.organ" name="radio" type="radio" value="heart">Heart
+                                        <input ng-model="params.organ" name="radio" type="radio" value="eye">Eye
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="params.organ" name="radio" type="radio" value="lugs">Lungs
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input ng-model="params.organ" name="radio" type="radio" value="Kidney">Kidney
                                     </label>
                                 </div>
                             </div>
@@ -68,7 +78,7 @@
                             <div class="form-group">
                                 <div class="radio">
                                     <label>
-                                        <input type="text" ng-model="params.bloodGroup">
+                                        <input type="text" ng-model="params.bloodgroup">
                                     </label>
                                 </div>
                             </div>
@@ -92,12 +102,12 @@
         <div class="col-md-9">
             <div class="box">
                 <h1>Donors</h1>
-                <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
+                <p>Here are all the donors details whom you can contact.</p>
             </div>
             <div class="box info-bar">
                 <div class="row">
                     <div class="col-sm-12 col-md-4 products-showing">
-                        Got <strong>25</strong> Donors
+                        Got <strong>{{donors.length}}</strong> Donors
                     </div>
                     <div class="col-sm-12 col-md-8  products-number-sort">
                         <div class="row">
@@ -111,9 +121,9 @@
                                     <div class="products-sort-by">
                                         <strong>Sort by</strong>
                                         <select name="sort-by" class="form-control">
-                                            <option>Price</option>
+                                            <option>Select All</option>
+                                            <option>Distance</option>
                                             <option>Name</option>
-                                            <option>Sales first</option>
                                         </select>
                                     </div>
                                 </div>
@@ -129,17 +139,15 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Email</th>
                                     <th>Phone</th>
                                     <th>Address</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>john@example.com</td>
-                                    <td>9911502984</td>
-                                    <td>606 Apt</td>
+                                <tr ng-repeat="donor in donors">
+                                    <td>{{donor.name}}</td>
+                                    <td>{{donor.phno}}</td>
+                                    <td>{{donor.address[0].city}}, {{donor.address[0].state}}, {{donor.address[0].pincode}}</td>
                                 </tr>
                             </tbody>
                         </table>
