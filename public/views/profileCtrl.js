@@ -1,17 +1,16 @@
 angular.module('startMean').controller('profileCtrl', function($scope, userFactory) {
-  $scope.nerd = {};
-
-  function getUsers() {
-    userFactory.get().success(function(data) {
-      $scope.users = data;
-    });
-  }
-  $scope.setNerd = function() {
-    userFactory.create($scope.nerd).success(function(data) {
-      getUsers();
-    });
-  }
-  $(document).ready(function() {
-    // getUsers();
-  })
+    $scope.saveData = function() {
+        console.log('test');
+        var x = $scope.user.symptoms;
+        $scope.user.symptoms = [];
+        $scope.user.symptoms.push(x);
+        console.log($scope.user);
+        userFactory.create($scope.user).success(function(data) {
+            $scope.dataUnsaved = false;
+        });
+    }
+    $(document).ready(function() {
+        $scope.user = {};
+        $scope.dataUnsaved = true;
+    })
 });
