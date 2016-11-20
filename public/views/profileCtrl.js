@@ -1,6 +1,6 @@
 angular.module('startMean').controller('profileCtrl', function($scope, userFactory) {
     $scope.saveData = function() {
-        console.log('test');
+        $scope.user.aadharId = localStorage.getItem("aadharId");
         var x = $scope.user.symptoms;
         $scope.user.symptoms = [];
         $scope.user.symptoms.push(x);
@@ -12,5 +12,6 @@ angular.module('startMean').controller('profileCtrl', function($scope, userFacto
     $(document).ready(function() {
         $scope.user = {};
         $scope.dataUnsaved = true;
+        console.log('test');
     })
 });
