@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 // define our nerd model
 // module.exports allows us to pass this to other files when it is called
-module.exports = mongoose.model('fortis', 
+module.exports = mongoose.model('medanta', 
   {
     
     medicalinformation: [
@@ -31,6 +31,7 @@ module.exports = mongoose.model('fortis',
         // }
     ],
     name: String,
+    bloodgroup : String,
     address: [
         {
             state: String,

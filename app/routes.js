@@ -1,12 +1,15 @@
+
  // app/routes.js
  // grab the fortis model we just created
- var fortis = require('./models/fortis');
+ var samvedna = require('./models/samvedna');
+ var medanta = require('./models/medanta');
+ var aaims = require('./models/aaims');
  module.exports = function(app) {
    // server routes ===========================================================
    // handle things like api calls
    // authentication routes
    // sample api route    
-   app.get('/fortis', function(req, res) {
+   app.get('/aaims', function(req, res) {
       
     var fname = ['ajay','vinay','mukesh','raju','vinod','deepak'];
     var lname = ['pandey','Singh','ramesh'];
@@ -24,7 +27,8 @@
 
 
     status = ["ok","not OK"];
-    var medicine = ["insuline","penicilin","carpol","doze"]
+    var medicine = ["insuline","penicilin","carpol","doze"];
+    var blood = ["a","ab", "b"];
 
 
 
@@ -38,7 +42,7 @@
     var name = fname[Math.floor(Math.random()*6)] +" "+ lname[Math.floor(Math.random()*3)]
     
 
-      var newRecord = new fortis({
+      var newRecord = new samvedna({
         
         "name" : name,
         "aadhar" : 1000000000+Math.floor(Math.random()*150),
@@ -48,15 +52,16 @@
                         "pincode" : 201301+Math.floor(Math.random()*40),
                         "locality" : [
                                 {
-                                        "latitude" : 70+(Math.random()*20),
-                                        "longitude" : 70+(Math.random()*20)
+                                        "latitude" : 20+(Math.random()*60),
+                                        "longitude" : 30+(Math.random()*60)
                                 }
                         ],
                         "state" : "Uttar Pradesh",
                         "city" : "Noida"
                 }
         ],
-        "phno" : 8889558665+Math.floor(Math.random()*150)        
+        bloodgroup  : blood[Math.floor(Math.random()*3)],
+        "phno" : 8800058665+Math.floor(Math.random()*1054)        
       });
     newRecord.medicalinformation.push({
                 type : disease[ran].name,
@@ -89,7 +94,7 @@
                         "Vomiting",
                         "Feeling more tired"
                 ],
-                organ : organ[Math.floor(Math.random()*4)],
+                "organdetails" : {'organ' : organ[Math.floor(Math.random()*4)], 'status' : Math.floor(Math.random()*3-1) },
                 doctor : "P.K Yadav"
         });
       console.log(newRecord);
@@ -107,22 +112,34 @@
 
 })
    .get('/find',function(req,res)  {
-    fortis.find(function(err,result) {
-        if (err)
-            console.log(err);
-        else
-            console.log(result.medicalinformation);
-            res.json(result);
+    
+    var aadhar =  req.body.aadhar||0;
+    var bloodgroup = req.body.bloodgroup||'a';
+    var location =  req.body.location||0;
+    var organ =  req.body.organ||"lugs";
+    var data =[];
+
+    var map =  function(obj) {
+        var lat = obj.address.locality.latitude;
+        var longh = obj.address.locality.longitude;
+        distance = Math.sqrt((location.latitude-lat)*(location.latitude-lat) - ((location.longitude-longh)*(location.longitude-longh)));
+        return distance;
+    }
+
+
+    samvedna.find({'bloodgroup' : bloodgroup, medicalinformation : {$elemMatch : {'organdetails.organ' :  organ, 'organdetails.status': {$gte:0}}}},{name:1,phno:1,address:1}
+        ,{limit: Math.floor(Math.random()*6)},function(err,result) { 
+        console.log(result);
+        data = data.concat(result);
+        res.send(data);
+     
     })
    })
 
 
 
-     .post('/api/nerds', function(req, res) {
-       var fortis = new fortis(); // create a new instance of the fortis model
-       fortis.name = req.body.name; // set the nerds name (comes from the request)
-       fortis.superpower = req.body.superpower; 
-       // save the fortis and check for errors
+     .post('findMatch', function(req, res) {
+       
        fortis.save(function(err) {
          if (err) res.send(err);
          console.log("fortis created!");
